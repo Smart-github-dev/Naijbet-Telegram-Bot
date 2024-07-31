@@ -37,34 +37,18 @@ export const runBot = () => {
     (msg: Message, match: RegExpExecArray | null) => {
       const chatId = msg.chat.id;
       // const userName = msg.from.username;
-
-      console.log(match, "this is match", msg, "this is msg");
-
-      // if (match) {
-      //   const referral = match[1];
-      //   userLogin({
-      //     userEmail: msg.from?.username,
-      //     userName: msg.from?.first_name,
-      //   });
-      // }
-
-      const replyMarkup = {
-        inline_keyboard: [
-          [{ text: "Open", web_app: { url: WEB_APP_URL as string } }],
-        ],
-      };
-
       bot.sendPhoto(
         chatId,
         "https://admin.naijabet.bet/static/media/logo.21c8b3b3.png",
         {
           caption: `Welcome , to the NaijaBet!`,
-          reply_markup: replyMarkup,
+          reply_markup: {
+            inline_keyboard: [
+              [{ text: "Open", web_app: { url: WEB_APP_URL as string } }],
+            ],
+          },
         }
       );
-
-      // bot.sendPhoto(chatId, "https://contents.static-slotcity.com/game_pic/ppc/en/216x160/vs12scode.jpg", { reply_markup: replyMarkup });
-      // bot.sendMessage(chatId, `Welcome, ${userName}, to the Vegastar Casino!`, { reply_markup: replyMarkup });
     }
   );
 
@@ -88,6 +72,14 @@ export const runBot = () => {
         });
       });
     }
+  );
+
+  bot.sendMessage(
+    "https://t.me/mini_bet_games",
+    `
+    \start
+    \games
+    `
   );
 };
 
