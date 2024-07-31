@@ -2,6 +2,23 @@ import TelegramBot, { Message } from "node-telegram-bot-api";
 // import { userLogin } from "./auth";
 import { BOT_TOKEN, WEB_APP_URL } from "./config";
 
+const gamesContent: any[] = [
+  {
+    id: "game_1",
+    title: "PLAY",
+    description: "This is a game about breaking rocks.",
+    iconPath: "https://naijabet.com/icon-256.png",
+    url: "https://naijabet.com/games/smash_the_rock",
+  },
+  {
+    id: "game_2",
+    title: "PLAY",
+    description: "This is an archer game.",
+    iconPath: "https://naijabet.com/games/small_archer/icons/icon-256.png",
+    url: "https://naijabet.com/games/small_archer",
+  },
+];
+
 export const runBot = () => {
   const bot = new TelegramBot(BOT_TOKEN as string, {
     polling: true,
@@ -48,6 +65,28 @@ export const runBot = () => {
 
       // bot.sendPhoto(chatId, "https://contents.static-slotcity.com/game_pic/ppc/en/216x160/vs12scode.jpg", { reply_markup: replyMarkup });
       // bot.sendMessage(chatId, `Welcome, ${userName}, to the Vegastar Casino!`, { reply_markup: replyMarkup });
+    }
+  );
+
+  bot.onText(
+    /\/games(?:\s+(.*))?/,
+    async (msg: Message, match: RegExpExecArray | null) => {
+      const chatId = msg.chat.id;
+      gamesContent.forEach((game) => {
+        bot.sendPhoto(chatId, game.iconPath, {
+          caption: game.description,
+          reply_markup: {
+            inline_keyboard: [
+              [
+                {
+                  text: game.title,
+                  web_app: { url: game.url },
+                },
+              ],
+            ],
+          },
+        });
+      });
     }
   );
 };
