@@ -33,7 +33,7 @@ export const runBot = () => {
 
       const replyMarkup = {
         inline_keyboard: [
-          [{ text: "Open Vegastar", web_app: { url: WEB_APP_URL as string } }],
+          [{ text: "Open", web_app: { url: WEB_APP_URL as string } }],
         ],
       };
 
@@ -41,7 +41,7 @@ export const runBot = () => {
         chatId,
         "https://admin.naijabet.bet/static/media/logo.21c8b3b3.png",
         {
-          caption: `Welcome, @${msg.from?.username}, to the NaijaBet!`,
+          caption: `Welcome , to the NaijaBet!`,
           reply_markup: replyMarkup,
         }
       );
