@@ -72,10 +72,6 @@ const runBot = () => {
             });
         });
     }));
-    bot.sendMessage("https://t.me/mini_bet_games", `
-    \start
-    \games
-    `);
 };
 exports.runBot = runBot;
 (0, exports.runBot)();

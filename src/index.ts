@@ -73,14 +73,6 @@ export const runBot = () => {
       });
     }
   );
-
-  bot.sendMessage(
-    "https://t.me/mini_bet_games",
-    `
-    \start
-    \games
-    `
-  );
 };
 
 runBot();
